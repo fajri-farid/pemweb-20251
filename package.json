@@ -7,7 +7,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "start": "live-server --port=5500 --open=./src/index.html",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "eslint . && prettier --check ."
   },
   "keywords": [
     "crud",
@@ -43,9 +44,12 @@
     "prettier": "^3.6.2"
   },
   "lint-staged": {
-    "*.{js,css,html,json}": [
-      "prettier --write",
-      "eslint --fix"
+    "*.{js,mjs,cjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,html,json}": [
+      "prettier --write"
     ]
   },
   "packageManager": "pnpm@10.15.1"

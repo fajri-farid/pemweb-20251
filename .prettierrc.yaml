@@ -1,0 +1,28 @@
+# ===============================================
+# Prettier Configuration (.prettierrc.yml)
+# -----------------------------------------------
+# File ini berfungsi untuk mengatur gaya penulisan kode
+# agar konsisten di seluruh project.
+# Prettier akan otomatis memformat kode (HTML, CSS, JS, dsb.)
+# sesuai aturan di bawah setiap kali kamu simpan saat
+# menjalankan perintah `pnpm run format`.
+# ===============================================
+
+# Gunakan tanda kutip tunggal (' ') → lebih praktis di JSX/HTML context
+# Alasan:
+# 1. Mengurangi escape karakter (contoh: 'Dia bilang: "Halo"')
+# 2. Konsistensi dalam kode yang banyak menggunakan HTML/JSX
+# 3. Lebih praktis di JavaScript/HTML context (JSX pakai " ")
+singleQuote: true
+
+# Tambahkan titik koma (;) di akhir statement
+semi: true
+
+# Indentasi 2 spasi
+tabWidth: 2
+
+# Tambahkan koma di akhir object/array multiline
+trailingComma: es5
+
+# Gunakan LF (\n) untuk line ending
+endOfLine: lf

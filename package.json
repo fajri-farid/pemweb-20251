@@ -1,0 +1,43 @@
+{
+  "name": "crud-mahasiswa",
+  "version": "1.0.0",
+  "description": "Aplikasi CRUD sederhana untuk data mahasiswa dengan HTML, CSS, dan JavaScript.",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "live-server --port=5500 --open=./src/index.html"
+  },
+  "keywords": [
+    "crud",
+    "javascript",
+    "html",
+    "css",
+    "mahasiswa",
+    "local-storage"
+  ],
+  "author": {
+    "name": "Fajri Farid",
+    "email": "fajrijry14@gmail.com",
+    "url": "https://fajrifarid.com"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/fajri-farid/pemweb-20251"
+  },
+  "homepage": "https://pemweb1.fajrifarid.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fajri-farid/pemweb-20251/issues"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "@eslint/json": "^0.13.2",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.3.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.6.2"
+  },
+  "packageManager": "pnpm@10.15.1"
+}

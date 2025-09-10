@@ -1,0 +1,61 @@
+{
+  "name": "crud-mahasiswa",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Aplikasi CRUD sederhana untuk data mahasiswa dengan HTML, CSS, dan JavaScript.",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "live-server --port=5500 --open=./src/index.html",
+    "prepare": "husky",
+    "test": "eslint . && prettier --check .",
+    "commitlint": "commitlint"
+  },
+  "keywords": [
+    "crud",
+    "javascript",
+    "html",
+    "css",
+    "mahasiswa",
+    "local-storage"
+  ],
+  "author": {
+    "name": "Fajri Farid",
+    "email": "fajrijry14@gmail.com",
+    "url": "https://fajrifarid.com"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/fajri-farid/pemweb-20251"
+  },
+  "homepage": "https://pemweb1.fajrifarid.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fajri-farid/pemweb-20251/issues"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.35.0",
+    "@eslint/json": "^0.13.2",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6",
+    "live-server": "^1.2.2",
+    "prettier": "^3.6.2"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,html,json}": [
+      "prettier --write"
+    ]
+  },
+  "packageManager": "pnpm@10.15.1"
+}

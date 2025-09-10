@@ -1,0 +1,15 @@
+# ===============================================
+# Git Attributes Configuration (.gitattributes)
+# -----------------------------------------------
+# File ini mengatur cara Git menangani file di repo.
+# Tujuan utamanya adalah menjaga konsistensi line ending
+# agar tidak berbeda-beda di Windows (CRLF) vs Linux/Mac (LF).
+#
+# Dengan aturan ini:
+# - Semua file teks akan disimpan dalam repo dengan LF
+# - Saat checkout ke lokal, Git tetap pakai LF
+#   → jadi hasil konsisten lintas OS
+# ===============================================
+
+# Normalisasi semua file teks ke LF
+* text=auto eol=lf

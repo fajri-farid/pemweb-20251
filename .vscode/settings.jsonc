@@ -1,0 +1,16 @@
+{
+  // ===============================================
+  // VSCode Workspace Settings
+  // -----------------------------------------------
+  // File ini mengatur preferensi editor hanya untuk
+  // project/repo ini (tidak memengaruhi global user).
+  // Jadi nanti kalau ada orang lain yang buka project
+  // ini, setting-nya tetap sama.
+  // dan juga kalau buat file baru pada project ini,
+  // setting-nya tetap sesuai ini.
+  // ===============================================
+
+  // Atur line ending default menjadi LF (\n)
+  // Supaya konsisten dengan .gitattributes & Prettier config
+  "files.eol": "\n",
+}

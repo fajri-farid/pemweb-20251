@@ -4,12 +4,12 @@
   "type": "module",
   "description": "Aplikasi CRUD sederhana untuk data mahasiswa dengan HTML, CSS, dan JavaScript.",
   "scripts": {
-    "format": "prettier --write .",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{html,css,js,json,md}\"",
+    "lint": "eslint \"src/**/*.{js,json}\"",
+    "lint:fix": "eslint \"src/**/*.{js,json}\" --fix",
     "start": "live-server --port=5500 --open=./src/index.html",
     "prepare": "husky",
-    "test": "eslint . && prettier --check .",
+    "test": "eslint \"src/**/*.{js,json}\" && prettier --check \"src/**/*.{html,css,js,json,md}\"",
     "commitlint": "commitlint"
   },
   "keywords": [
@@ -49,11 +49,11 @@
     "prettier": "^3.6.2"
   },
   "lint-staged": {
-    "*.{js,mjs,cjs}": [
+    "*.{js,mjs,cjs,json}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{css,html,json}": [
+    "*.{css,html,md}": [
       "prettier --write"
     ]
   },

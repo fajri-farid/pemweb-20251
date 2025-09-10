@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <meta
+      name="description"
+      content="Aplikasi CRUD sederhana untuk mengelola data mahasiswa: tambah, edit, hapus, dan lihat daftar mahasiswa."
+    />
+    <title>CRUD Sederhana Data Mahasiswa dengan HTML, CSS & JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <h1>Data Mahasiswa — CRUD Sederhana</h1>
+    </header>
+
+    <main>
+      <!-- FORM INPUT MAHASISWA START -->
+      <section id="form-section">
+        <h2>Form Data Mahasiswa</h2>
+        <form id="form-mahasiswa" autocomplete="off">
+          <!-- Input Nama Mahasiswa -->
+          <div>
+            <label for="nama">Nama:</label>
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              required
+              placeholder="Masukkan nama"
+            />
+          </div>
+
+          <!-- Input NIM Mahasiswa -->
+          <div>
+            <label for="nim">NIM:</label>
+            <input
+              type="text"
+              id="nim"
+              name="nim"
+              required
+              placeholder="Masukkan NIM"
+            />
+          </div>
+
+          <!-- Input Alamat Mahasiswa -->
+          <div>
+            <label for="alamat">Alamat:</label>
+            <input
+              type="text"
+              id="alamat"
+              name="alamat"
+              required
+              placeholder="Masukkan alamat"
+            />
+          </div>
+
+          <!-- Hidden input untuk ID mahasiswa saat edit -->
+          <input type="hidden" id="id" name="id" />
+
+          <!-- Tombol Aksi Form -->
+          <div id="form-actions">
+            <button
+              type="submit"
+              id="btn-simpan"
+              aria-label="Simpan Data Mahasiswa"
+            >
+              Simpan
+            </button>
+            <button
+              type="button"
+              id="btn-reset"
+              aria-label="Reset Form Data Mahasiswa"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </section>
+      <!-- FORM INPUT MAHASISWA END -->
+
+      <!-- TABEL DATA MAHASISWA START -->
+      <section id="table-section">
+        <h2>Daftar Mahasiswa</h2>
+        <div class="table-wrapper">
+          <table id="table-mahasiswa">
+            <caption>
+              Daftar data mahasiswa yang tersimpan
+            </caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nama</th>
+                <th>NIM</th>
+                <th>Alamat</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <!-- Baris tabel akan dirender melalui JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <!-- TABEL DATA MAHASISWA END -->
+    </main>
+
+    <footer>
+      <p>&copy; 2025 CRUD Sederhana. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPT JAVASCRIPT CRUD -->
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+# Dependency folders
+node_modules
+dist
+build
+
+# Lockfiles
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Husky hooks
+.husky
+
+# Env files
+.env
+.env.*

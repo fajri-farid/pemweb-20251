@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 /* Custom scrollbar start */
-::-webkit-scrollbar {
+::-webkit-scrollbar:vertical {
   width: 6px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -28,9 +32,16 @@
   --color-text-light: #ffffff;
   --color-secondary: #e0e0e0;
   --color-background: #fafafa;
+  /* 
+  ARSIP - warna tombol edit dan hapus lama
   --color-accent: #4caf50;
   --color-accent-hover: #43a047;
   --color-danger: #f44336;
+  --color-danger-hover: #d32f2f; 
+  */
+  --color-accent: #43a047;
+  --color-accent-hover: #388e3c;
+  --color-danger: #e53935;
   --color-danger-hover: #d32f2f;
   --color-muted: #707070;
   --color-muted-hover: #555555;
@@ -90,7 +101,7 @@ footer p {
 /* form style start */
 #form-section {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 1rem auto 0 auto;
   padding: 1.5rem;
   background-color: var(--color-white);
   border-radius: 8px;
@@ -183,10 +194,175 @@ footer p {
 }
 /* form style end */
 
+/* filter data mahasiswa start */
+#search-and-filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#search-wrapper,
+#sort-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+#search-wrapper {
+  flex: 1;
+}
+
+#sort-wrapper {
+  flex-shrink: 0;
+}
+
+#search-wrapper input {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* sort start */
+#sort-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 200px;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+#sort-wrapper .trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid var(--color-secondary);
+  border-radius: 6px;
+  background: var(--color-white);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#sort-wrapper .trigger span {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+#sort-wrapper.open .trigger {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 2px 3px rgba(25, 118, 210, 0.1);
+}
+
+#sort-wrapper .trigger i {
+  transition: transform 0.35s ease-in;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+#sort-wrapper.open .trigger #sort-icon {
+  transform: rotate(180deg);
+  color: var(--color-primary);
+}
+
+#sort-wrapper .options {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: var(--color-white);
+  border: 1px solid var(--color-secondary);
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+  transition: all 0.4s ease-in;
+  z-index: 100;
+}
+
+#sort-wrapper.open .options {
+  opacity: 1;
+  max-height: 300px;
+  pointer-events: auto;
+}
+
+#sort-wrapper .options li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#sort-wrapper .options li:hover {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+#sort-wrapper .options li i {
+  margin-right: 0.5rem;
+  color: var(--color-muted);
+  width: 1rem;
+  text-align: center;
+}
+
+#sort-wrapper .options li:hover i {
+  color: var(--color-white);
+}
+/* sort end */
+
+#search-and-filter-wrapper label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+#search-and-filter-wrapper select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#search-and-filter-wrapper input,
+#search-and-filter-wrapper select {
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid var(--color-secondary);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#search-and-filter-wrapper input:focus,
+#search-and-filter-wrapper select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 2px 3px rgba(25, 118, 210, 0.1);
+}
+/* filter data mahasiswa end */
+
 /* table mahasiswa start */
+.table-wrapper {
+  border-radius: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
 #table-section {
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 1rem auto;
   padding: 1.5rem;
   background-color: var(--color-white);
   border-radius: 8px;
@@ -204,14 +380,9 @@ footer p {
   overflow-x: auto;
 }
 
-.table-wrapper {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
-
 #table-mahasiswa {
   width: 100%;
+  min-width: 800px;
   border-collapse: separate;
   border-spacing: 0;
 }
@@ -263,6 +434,7 @@ footer p {
   background: var(--color-accent);
   color: var(--color-text-light);
 }
+
 #table-mahasiswa .edit:hover {
   background: var(--color-accent-hover);
 }
@@ -271,6 +443,7 @@ footer p {
   background: var(--color-danger);
   color: var(--color-text-light);
 }
+
 #table-mahasiswa .hapus:hover {
   background: var(--color-danger-hover);
 }
@@ -308,21 +481,47 @@ footer p {
 #table-mahasiswa th:nth-child(1),
 #table-mahasiswa td:nth-child(1) {
   width: 5%;
+  text-align: center;
 }
+
 #table-mahasiswa th:nth-child(2),
 #table-mahasiswa td:nth-child(2) {
   width: 30%;
 }
+
 #table-mahasiswa th:nth-child(3),
 #table-mahasiswa td:nth-child(3) {
   width: 20%;
 }
+
 #table-mahasiswa th:nth-child(4),
 #table-mahasiswa td:nth-child(4) {
   width: 30%;
 }
+
 #table-mahasiswa th:nth-child(5),
 #table-mahasiswa td:nth-child(5) {
   width: 15%;
 }
 /* table mahasiswa end */
+
+/* not found search start */
+#empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+#empty-state img {
+  max-width: 150px;
+  opacity: 0.5;
+}
+
+#empty-state p {
+  opacity: 0.5;
+}
+/* not found search end */

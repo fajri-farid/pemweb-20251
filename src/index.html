@@ -8,6 +8,10 @@
       name="description"
       content="Aplikasi CRUD sederhana untuk mengelola data mahasiswa: tambah, edit, hapus, dan lihat daftar mahasiswa."
     />
+    <script
+      src="https://kit.fontawesome.com/de991fd127.js"
+      crossorigin="anonymous"
+    ></script>
     <title>CRUD Sederhana Data Mahasiswa dengan HTML, CSS & JavaScript</title>
   </head>
   <body>
@@ -83,6 +87,50 @@
       <!-- TABEL DATA MAHASISWA START -->
       <section id="table-section">
         <h2>Daftar Mahasiswa</h2>
+
+        <div id="search-and-filter-wrapper">
+          <div id="search-wrapper">
+            <label for="search">Cari Mahasiswa:</label>
+            <input
+              type="text"
+              id="search"
+              placeholder="Cari berdasarkan nama atau NIM"
+              aria-label="Cari Mahasiswa"
+            />
+          </div>
+
+          <div id="sort-wrapper">
+            <div class="trigger">
+              <span><i class="fa-solid fa-sliders"></i> Default</span>
+              <i class="fa-solid fa-chevron-down" id="sort-icon"></i>
+            </div>
+
+            <ul class="options">
+              <li data-value=""><i class="fa-solid fa-sliders"></i> Default</li>
+              <li data-value="nama-asc">
+                <i class="fa-solid fa-arrow-up-a-z"></i> Nama
+              </li>
+              <li data-value="nama-desc">
+                <i class="fa-solid fa-arrow-down-z-a"></i> Nama
+              </li>
+              <li data-value="nim-asc">
+                <i class="fa-solid fa-arrow-up-1-9"></i> NIM
+              </li>
+              <li data-value="nim-desc">
+                <i class="fa-solid fa-arrow-down-9-1"></i> NIM
+              </li>
+            </ul>
+
+            <select id="sort" name="sort" aria-label="Urutkan Mahasiswa" hidden>
+              <option value="">Default</option>
+              <option value="nama-asc">Nama Asc</option>
+              <option value="nama-desc">Nama Desc</option>
+              <option value="nim-asc">NIM Asc</option>
+              <option value="nim-desc">NIM Desc</option>
+            </select>
+          </div>
+        </div>
+
         <div class="table-wrapper">
           <table id="table-mahasiswa">
             <caption>
@@ -90,7 +138,7 @@
             </caption>
             <thead>
               <tr>
-                <th>#</th>
+                <th>No.</th>
                 <th>Nama</th>
                 <th>NIM</th>
                 <th>Alamat</th>

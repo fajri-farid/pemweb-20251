@@ -11,6 +11,7 @@ const saveData = (list) =>
 // ------------------- STATE -------------------
 let data = loadData(); // Array data mahasiswa
 let autoId = data.reduce((m, o) => Math.max(m, o.id), 0) + 1; // Auto-increment ID
+let filteredData = [...data];
 
 // ------------------- ELEMENT HTML -------------------
 const form = document.getElementById('form-mahasiswa');
@@ -20,12 +21,37 @@ const elNim = document.getElementById('nim');
 const elAlamat = document.getElementById('alamat');
 const tbody = document.getElementById('tbody');
 const btnReset = document.getElementById('btn-reset');
+const elSearch = document.getElementById('search');
+const elSort = document.getElementById('sort');
+const sortWrapper = document.getElementById('sort-wrapper');
+const trigger = sortWrapper.querySelector('.trigger');
+const options = sortWrapper.querySelectorAll('.options li');
+const triggerLabel = sortWrapper.querySelector('.trigger span');
+const tableSection = document.getElementById('table-section');
 
 // ------------------- FUNGSI RENDER -------------------
 function render() {
-  if (!Array.isArray(data)) data = [];
+  if (!Array.isArray(data)) filteredData = [];
   tbody.innerHTML = ''; // Kosongkan tabel sebelum render ulang
-  data.forEach((row, idx) => {
+
+  // Hapus pesan "Data tidak ditemukan" jika ada
+  const notFound = document.querySelector('#empty-state');
+  if (notFound) notFound.remove();
+
+  if (filteredData.length === 0) {
+    const notFoundData = document.createElement('div');
+    notFoundData.id = 'empty-state';
+    notFoundData.innerHTML = `
+      <img src="./assets/no-data.svg" alt="Data tidak ditemukan"/>
+      <p>Data mahasiswa tidak ditemukan</p>
+    `;
+    tableSection.appendChild(notFoundData);
+    return;
+  }
+
+  const sortedData = sortData(filteredData);
+
+  sortedData.forEach((row, idx) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
           <td>${idx + 1}</td>
@@ -48,6 +74,96 @@ function render() {
     tbody.appendChild(tr);
   });
 }
+
+// ------------------- SEARCH FUNCTIONALITY START -------------------
+function initSearchFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const searchKeyword = params.get('search') || '';
+  if (searchKeyword) {
+    elSearch.value = searchKeyword;
+    filteredData = data.filter(
+      (m) =>
+        m.nama.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+        m.nim.toLowerCase().includes(searchKeyword.toLowerCase())
+    );
+  } else {
+    filteredData = [...data];
+  }
+  render();
+}
+
+elSearch.addEventListener('input', (e) => {
+  const searchKeyword = e.target.value.toLowerCase().trim();
+
+  const params = new URLSearchParams(window.location.search);
+  if (searchKeyword) {
+    params.set('search', searchKeyword);
+  } else {
+    params.delete('search');
+  }
+
+  const queryString = params.toString();
+
+  const newUrl = queryString
+    ? `${window.location.pathname}?${queryString}`
+    : window.location.pathname;
+  window.history.replaceState({}, '', newUrl);
+
+  if (searchKeyword === '') {
+    filteredData = [...data];
+  } else {
+    filteredData = data.filter(
+      (m) =>
+        m.nama.toLowerCase().includes(searchKeyword) ||
+        m.nim.toLowerCase().includes(searchKeyword)
+    );
+  }
+  render();
+});
+// ------------------- SEARCH FUNCTIONALITY END -------------------
+
+// ------------------- SORT FUNCTIONALITY START -------------------
+trigger.addEventListener('click', () => {
+  sortWrapper.classList.toggle('open');
+});
+
+options.forEach((option) => {
+  option.addEventListener('click', () => {
+    const value = option.getAttribute('data-value');
+    const html = option.innerHTML;
+
+    triggerLabel.innerHTML = html;
+    elSort.value = value;
+    elSort.parentElement.classList.remove('open');
+
+    render();
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!sortWrapper.contains(e.target)) {
+    sortWrapper.classList.remove('open');
+  }
+});
+
+function sortData(list) {
+  const sortValue = elSort.value;
+
+  if (sortValue === 'nama-asc') {
+    return [...list].sort((a, b) => a.nama.localeCompare(b.nama));
+  }
+  if (sortValue === 'nama-desc') {
+    return [...list].sort((a, b) => b.nama.localeCompare(a.nama));
+  }
+  if (sortValue === 'nim-asc') {
+    return [...list].sort((a, b) => a.nim.localeCompare(b.nim));
+  }
+  if (sortValue === 'nim-desc') {
+    return [...list].sort((a, b) => b.nim.localeCompare(a.nim));
+  }
+  return list;
+}
+// ------------------- SORT FUNCTIONALITY END -------------------
 
 // ------------------- FORM SUBMIT (CREATE / UPDATE) -------------------
 form.addEventListener('submit', (e) => {
@@ -119,3 +235,4 @@ tbody.addEventListener('click', (e) => {
 
 // ------------------- INIT -------------------
 render(); // Render tabel saat halaman pertama kali dibuka
+initSearchFromUrl(); // Inisialisasi pencarian dari URL
